@@ -370,3 +370,92 @@ Practical learning
 I used touch to create a test file, ls -l to inspect its permissions, and chmod to change permissions. I checked the result after each change and restored the original permissions.
 
 Big idea: Linux permissions help control access to files and directories.
+Linux Lesson 5 — Users, Ownership & sudo
+
+The Big Idea
+
+Linux uses users, groups, ownership, and permissions to control access to files and administrative tasks.
+
+1. Users and Root
+
+* A user is an account on a Linux system.
+* Root is the special administrator account with broad system privileges.
+* Ordinary users have more limited permissions, helping reduce accidental damage.
+
+2. sudo
+
+* sudo allows an authorised user to run a particular command with elevated privileges.
+* You do not need to remain logged in as root.
+* The user must be authorised to use sudo.
+* The command must also be valid and allowed by the system.
+
+3. Principle of Least Privilege
+
+The principle of least privilege means using only the permissions required for a task, for only as long as necessary. This helps reduce the risk of mistakes and unauthorised changes.
+
+4. File Ownership and Groups
+
+* Owner: The user account that owns a file.
+* Group: A named collection of user accounts associated with a file. Group permissions can apply to members of that group.
+* Group membership does not automatically allow someone to edit a file. The file’s permissions must also allow it.
+
+5. chmod vs chown
+
+* chmod changes a file’s permissions.
+* chown changes a file’s owner and can also change its associated group.
+* Changing ownership often requires administrator privileges.
+
+Examples:
+
+chmod u+w filename
+chown NEW_OWNER filename
+
+The first command adds write permission for the owner. The second shows the general syntax for changing a file’s owner.
+
+6. Practical Linux Commands
+
+Command	Purpose
+whoami	Displays the current username
+id	Displays user ID, group ID, and group memberships
+ls -l filename	Displays permissions, owner, group, and file details
+sudo command	Runs a command with elevated privileges if authorised
+chmod	Changes file permissions
+chown	Changes file ownership and optionally its group
+
+7. Practical Example
+
+Command:
+
+ls -l permission-test.txt
+
+Example output:
+
+-rw-r--r-- 1 user user 0 Oct 18 13:05 permission-test.txt
+
+Explanation:
+
+* - indicates a regular file.
+* rw- means the owner can read and write.
+* The first r-- means the group can read.
+* The second r-- means others can read.
+* The first user is the owner.
+* The second user is the associated group.
+* 0 means the file is empty.
+
+I also used id and received:
+
+uid=1000(user) gid=1000(user) groups=1000(user)
+
+This showed my user ID, primary group ID, and listed group membership.
+
+Aha! Moment
+
+Ownership and permissions are different. Ownership identifies the owner and associated group, while permissions control what the owner, group, and others can do.
+
+Key Terms
+
+User, root, sudo, authorisation, least privilege, owner, group, ownership, permissions, chmod, chown.
+
+Lesson Summary
+
+I learned how Linux identifies users and groups, how authorised users can use sudo, why least privilege matters, and how to inspect file ownership and permissions using whoami, id, and ls -l.
