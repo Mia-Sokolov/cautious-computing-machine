@@ -455,7 +455,52 @@ Ownership and permissions are different. Ownership identifies the owner and asso
 Key Terms
 
 User, root, sudo, authorisation, least privilege, owner, group, ownership, permissions, chmod, chown.
+Linux Lesson 6: Processes and System Monitoring
 
-Lesson Summary
+The Big Idea
 
-I learned how Linux identifies users and groups, how authorised users can use sudo, why least privilege matters, and how to inspect file ownership and permissions using whoami, id, and ls -l.
+Linux runs programs as processes. We can monitor processes and system resources to investigate why a server might be struggling.
+
+Key Terms
+
+* Program: Instructions saved in a file.
+* Process: A running instance of a program.
+* PID (Process ID): A number that identifies a process.
+* CPU: Processes instructions and performs calculations.
+* RAM: Temporary working memory used by running programs.
+* System monitoring: Checking processes and resources to understand computer performance.
+
+Commands Learned
+
+ps
+Displays information about processes.
+
+top
+Monitors processes and system resources, including CPU and memory usage.
+
+top -b -n 1
+Displays one snapshot of system activity and then exits.
+
+Understanding CPU and RAM
+
+* High CPU usage means the CPU is busy processing work.
+* High CPU usage may contribute to a slowdown, but it does not prove the cause.
+* Low available RAM means little physical memory is readily available.
+* Low available RAM can cause performance problems.
+* CPU usage and memory usage measure different things.
+
+Aha! Moment
+
+A server can have high CPU usage but plenty of available RAM, or low CPU usage but very little available RAM. We check both resources when investigating performance problems.
+
+Practical Example
+
+If a server is slow, its CPU usage is 15%, and available RAM is very low, investigate memory first.
+
+If CPU usage is high and RAM is plentiful, investigate CPU activity first.
+
+These readings are clues, not final diagnoses.
+
+What I Learned
+
+I learned how to distinguish programs from processes, understand PIDs, use ps and top, and recognise how CPU and RAM usage help us investigate server performance.
