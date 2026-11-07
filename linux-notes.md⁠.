@@ -504,3 +504,121 @@ These readings are clues, not final diagnoses.
 What I Learned
 
 I learned how to distinguish programs from processes, understand PIDs, use ps and top, and recognise how CPU and RAM usage help us investigate server performance.
+Linux Lesson 7: Services & systemctl
+
+The Big Idea
+
+Linux services are programs that run in the background to provide important functions. We use systemctl to inspect and manage services controlled by systemd.
+
+Key Terms
+
+* Service: A program that provides a background function.
+* Process: A running instance of a program.
+* systemd: The system and service manager used by many Linux systems.
+* systemctl: The command used to interact with and manage services controlled by systemd.
+* Service definition: A configuration file that tells systemd how to manage a service.
+
+1. Services and Processes
+
+A service usually runs as a process, but not every process is a service.
+
+A program such as Python can be configured to run as a service. Being a Python program alone does not make it a service.
+
+2. Listing Services
+
+Command:
+
+systemctl list-units --type=service
+
+This lists service units known to systemd.
+
+The output includes:
+
+* LOAD: Whether the service definition was successfully loaded.
+* ACTIVE: The general activation state.
+* SUB: The more specific state of the service.
+
+Example:
+
+* loaded means systemd successfully loaded the service definition.
+* active means the service is active.
+* running means the service is currently running.
+
+A service definition can be loaded even if the service itself is not running.
+
+3. Checking a Service
+
+To see detailed information about a service:
+
+systemctl status cron.service
+
+This displays information such as:
+
+* Whether the service is active.
+* Its process ID (PID), when applicable.
+* Recent log messages.
+
+For a quick active/inactive check:
+
+systemctl is-active cron.service
+
+4. Managing Services
+
+Command	What it does
+start	Requests that a service starts now.
+stop	Requests that a service stops now.
+restart	Stops and starts a service again.
+enable	Configures a service to start automatically during boot.
+disable	Removes its automatic startup configuration.
+
+Examples:
+
+sudo systemctl start SERVICE
+sudo systemctl stop SERVICE
+sudo systemctl restart SERVICE
+sudo systemctl enable SERVICE
+sudo systemctl disable SERVICE
+
+SERVICE is a placeholder for an actual service name.
+
+Important difference:
+
+* start = run the service now.
+* enable = configure it to start automatically when the system boots.
+
+A service can be running but not enabled, or stopped but enabled for the next boot.
+
+5. Understanding sudo
+
+sudo allows an authorised user to run a command with elevated privileges, often as the root user.
+
+It is useful when managing services because some actions require administrator permissions.
+
+Aha! Moment
+
+Loading a service definition does not mean the service is running. Also, starting a service now and enabling it for future startup are two different actions.
+
+Why This Matters for Cloud Architecture
+
+Cloud architects need to understand services because servers depend on background programs to provide important functions.
+
+They may need to:
+
+* Check whether a service is running.
+* Investigate why a service stopped.
+* Restart a service when appropriate.
+* Configure services to start automatically after a reboot.
+
+Lesson 7 Review
+
+I completed the 10-question lesson quiz and scored 10/10 (100%).
+
+I understand:
+
+* What services and processes are.
+* The difference between systemd and systemctl.
+* How to list and inspect services.
+* What LOAD, ACTIVE and SUB mean.
+* How start, stop, restart, enable and disable differ.
+* Why sudo is used for administrative commands.
+
