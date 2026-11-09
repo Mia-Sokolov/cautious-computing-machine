@@ -621,4 +621,152 @@ I understand:
 * What LOAD, ACTIVE and SUB mean.
 * How start, stop, restart, enable and disable differ.
 * Why sudo is used for administrative commands.
+Linux Lesson 8 — Logs & Troubleshooting
 
+1. What Are Logs?
+
+Logs are records of important events that happen on a Linux system. They help us understand what happened, when it happened, which service was involved, and whether errors occurred.
+
+Examples of events recorded in logs:
+
+* Services starting or stopping.
+* Errors and warnings.
+* Login attempts.
+* System events.
+* Scheduled commands running.
+
+Logs are like a computer’s diary: they provide clues when something goes wrong.
+
+2. Where Are Logs Stored?
+
+A common Linux log directory is:
+
+/var/log
+
+To list its contents:
+
+ls /var/log
+
+The exact files and directories depend on the Linux distribution and environment.
+
+3. The systemd Journal and journalctl
+
+Many Linux systems use systemd, which manages services and works with a logging system called the systemd journal.
+
+The journalctl command displays journal entries.
+
+View journal entries
+
+journalctl
+
+Filter logs for a specific service
+
+journalctl -u cron.service
+
+* -u selects a specific unit or service.
+* cron.service is the service whose entries we want to inspect.
+
+Filtering helps us focus on the service we’re investigating instead of searching through unrelated entries.
+
+Show the five most recent entries
+
+journalctl -u cron.service -n 5
+
+-n 5 displays the five most recent journal entries.
+
+Follow live logs
+
+journalctl -u cron.service -f
+
+* -f means follow.
+* It displays recent entries and continues watching for new ones.
+* Press Ctrl + C to stop following the logs.
+
+Important: Ctrl + C stops the command, not the service.
+
+4. Log Levels
+
+Log levels help us understand how serious an event is.
+
+Level	Meaning
+INFO	Ordinary information about an event.
+WARNING	An unusual situation that may become a problem.
+ERROR	Something went wrong; an operation may have failed.
+CRITICAL	A severe issue that may affect major system functions.
+
+A warning does not always mean something has failed. It can alert us to a potential problem that needs investigation.
+
+5. Troubleshooting
+
+Troubleshooting means investigating a problem to identify possible causes and work towards fixing it.
+
+For example, imagine a website hosted on a Linux server stops responding.
+
+A logical troubleshooting process:
+
+1. Identify the problem.
+2. Gather information about the affected service.
+3. Inspect relevant logs for errors, warnings and unusual events.
+4. Investigate possible causes.
+5. Take appropriate action to address the cause.
+6. Check again to see whether the fix worked.
+
+Logs provide clues, but they do not always give us the complete answer. We must investigate before deciding what action to take.
+
+6. Connecting systemctl and journalctl
+
+We can use the knowledge from Lesson 7 (Services and systemctl) together with Lesson 8 (Logs and Troubleshooting).
+
+Check a service’s current status
+
+systemctl status nginx
+
+This shows information about the nginx service, such as whether it is active, inactive or failed.
+
+Inspect its recorded events
+
+journalctl -u nginx
+
+This displays journal entries related to nginx.
+
+The difference:
+
+* systemctl status = What is happening with the service right now?
+* journalctl = What events have been recorded about the service?
+
+7. Verify the Fix
+
+After investigating a problem and making a fix, we must not simply assume it worked.
+
+Check the service again:
+
+systemctl status nginx
+
+Then inspect its recent journal entries:
+
+journalctl -u nginx
+
+This helps us confirm whether the service is running and whether new errors or warnings have appeared.
+
+Verification confirms the result of our fix, although it cannot guarantee that the service will never experience another problem.
+
+8. Important Safety Note
+
+When learning Linux troubleshooting, begin with read-only inspection commands.
+
+Do not stop, restart, enable, disable or modify important services without understanding the possible consequences.
+
+Key Takeaways
+
+* Logs record events that happen on a Linux system.
+* /var/log is a common directory for log files.
+* journalctl displays journal entries.
+* -u filters entries for a particular service.
+* -n 5 displays the five most recent entries.
+* -f follows logs as new entries arrive.
+* Ctrl + C stops the log-following command.
+* Log levels help us understand the severity of events.
+* Troubleshooting involves gathering evidence and investigating possible causes.
+* Always verify a fix instead of assuming it worked.
+
+Lesson 8 completed: Linux Logs & Troubleshooting.
