@@ -770,3 +770,111 @@ Key Takeaways
 * Always verify a fix instead of assuming it worked.
 
 Lesson 8 completed: Linux Logs & Troubleshooting.
+Linux Lesson 9 — SSH (Secure Shell)
+
+1. What is SSH?
+
+SSH stands for Secure Shell. It is a protocol that allows us to securely connect to and interact with another computer over a network.
+
+Cloud professionals use SSH to manage remote Linux servers without physically travelling to the data centre.
+
+2. SSH Client vs SSH Server
+
+* SSH client: The computer connecting FROM.
+* SSH server: The computer being connected TO.
+
+Example:
+
+* Laptop in South Africa = SSH client.
+* Linux server in London = SSH server.
+
+3. SSH Command Structure
+
+ssh username@server_address
+
+Example:
+
+ssh alex@192.0.2.10
+
+* ssh starts the connection.
+* alex is the username on the remote server.
+* 192.0.2.10 is the server’s IP address.
+* A hostname can also be used instead of an IP address.
+
+The username belongs to an account on the remote server.
+
+4. Encryption
+
+SSH uses encryption to protect information travelling between computers.
+
+Encryption scrambles information into unreadable data so that people intercepting network traffic cannot easily understand it.
+
+This supports confidentiality, an important cybersecurity principle.
+
+5. Authentication
+
+Authentication verifies the identity of someone trying to connect.
+
+SSH can use different authentication methods, including:
+
+* Password authentication.
+* Public-key authentication.
+
+Knowing a server’s IP address does not automatically give someone access.
+
+6. SSH Keys
+
+SSH can use a pair of cryptographic keys:
+
+* Public key: Can be shared and is placed on the remote server.
+* Private key: Stays securely on your own computer and must remain secret.
+
+During public-key authentication, the client uses the private key to create a cryptographic proof. The server uses the matching public key to verify it.
+
+The private key is not sent to the server during normal public-key authentication.
+
+If someone obtains your private key, they may be able to impersonate you when connecting to servers that trust its matching public key.
+
+7. How an SSH Connection Works
+
+1. The client sends a connection request to the remote server.
+2. SSH establishes an encrypted connection.
+3. The server checks the user’s identity through authentication.
+4. If authentication succeeds, the user gains access to the remote account.
+5. Commands are executed on the remote server, subject to the account’s permissions.
+
+Example:
+
+ssh alex@192.0.2.10
+
+After connecting:
+
+pwd
+ls
+
+These commands operate on the remote server’s current working directory, not the original computer’s directory.
+
+8. SSH in Cloud Architecture
+
+SSH is useful for cloud professionals because it allows them to manage remote Linux servers securely.
+
+Examples of tasks include:
+
+* Inspecting files and directories.
+* Checking services.
+* Investigating server problems.
+* Viewing logs.
+* Managing and maintaining server systems.
+
+A cloud architect designs the overall cloud infrastructure, while cloud engineers and system administrators often handle more of the day-to-day server management. Their responsibilities can overlap.
+
+Important Differences to Remember
+
+Concept	Meaning
+Encryption	Protects information travelling across a network
+Authentication	Verifies who you are
+Authorisation	Determines what you are allowed to do
+SSH client	Computer connecting from
+SSH server	Computer connecting to
+
+Lesson 9 Summary: SSH provides secure remote access to Linux computers. It uses encryption to protect communication and authentication to verify identity. SSH keys provide an additional method of proving identity securely.
