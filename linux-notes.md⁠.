@@ -878,3 +878,116 @@ SSH client	Computer connecting from
 SSH server	Computer connecting to
 
 Lesson 9 Summary: SSH provides secure remote access to Linux computers. It uses encryption to protect communication and authentication to verify identity. SSH keys provide an additional method of proving identity securely.
+Linux Lesson 10 — Disk Space & Storage
+
+1. RAM vs Storage vs Disk Space
+
+* RAM: Temporary working memory used by running applications.
+* Storage: Holds files and data long-term.
+* Disk space: The amount of storage used and available.
+
+Example: A server has 100 GB of storage and 95 GB is used. Only 5 GB remains, meaning it is running low on disk space, not RAM.
+
+2. df -h — Disk Free
+
+Displays disk-space information for mounted filesystems.
+
+* df = displays filesystem disk space.
+* -h = human-readable format (KB, MB, GB).
+
+Important output columns:
+
+* Filesystem: Filesystem or storage source.
+* Size: Total capacity.
+* Used: Space currently used.
+* Avail: Available space.
+* Use%: Percentage of space used.
+* Mounted on: Where the filesystem is accessible.
+
+Example:
+
+df -h
+
+3. Partitions and Mount Points
+
+* Partition: A section of a physical disk.
+* Mount point: The directory where Linux makes a filesystem accessible.
+* / = root directory, the starting point of the Linux filesystem.
+* /boot = contains boot-related files.
+* /boot/efi = contains EFI files used during startup.
+
+A partition can exist without currently being mounted.
+
+Example:
+
+* /dev/sda1 is a partition.
+* / is its mount point.
+
+A partition, filesystem and mount point are related but are not the same thing.
+
+4. du — Disk Usage
+
+Measures how much disk space files and directories use.
+
+Commands:
+
+du -sh /var/log
+
+Shows the total disk usage of /var/log.
+
+* -s = summary.
+* -h = human-readable.
+
+du -h --max-depth=1 /var
+
+Shows the sizes of directories directly inside /var.
+
+Example output:
+
+9.1M    /var/log
+9.1M    /var
+
+5. df vs du
+
+* df -h = checks how full a mounted filesystem is.
+* du = investigates how much space files and directories use.
+
+Troubleshooting example:
+
+1. Run df -h to identify a filesystem running low on space.
+2. Use du to investigate which directories are using the space.
+
+6. lsblk — List Block Devices
+
+Displays disks and their partitions.
+
+Example:
+
+lsblk
+
+Important columns:
+
+* NAME: Device or partition name.
+* SIZE: Capacity.
+* TYPE: Disk or partition.
+* MOUNTPOINTS: Where the filesystem is mounted.
+
+Example:
+
+sda       20G   disk
+├─sda1    19G   part   /
+├─sda15  106M   part   /boot/efi
+└─sda16  913M   part   /boot
+
+* sda = main disk.
+* sda1 = partition mounted at /.
+* sda15 = partition mounted at /boot/efi.
+* sda16 = partition mounted at /boot.
+
+No mount point listed means the partition is not currently mounted.
+
+Key Takeaway
+
+Linux storage commands help cloud engineers understand disk capacity, identify partitions, investigate storage usage and troubleshoot servers running low on disk space.
+
+Lesson 10 complete: Disk Space & Storage.
