@@ -991,3 +991,86 @@ Key Takeaway
 Linux storage commands help cloud engineers understand disk capacity, identify partitions, investigate storage usage and troubleshoot servers running low on disk space.
 
 Lesson 10 complete: Disk Space & Storage.
+Lesson 11: Linux Package Managers
+
+1. What Is a Package?
+
+A package is a bundle containing software and information needed to install and manage it.
+
+2. What Is a Package Manager?
+
+A package manager is a tool used to manage software packages. It can:
+
+* Install software
+* Update package information
+* Upgrade installed software
+* Remove software
+* Search for packages
+
+3. Package Repositories
+
+A package repository is a storage location containing software packages and information about them.
+
+Package managers use configured repositories to find available packages and versions.
+
+4. APT and DNF
+
+APT (Advanced Package Tool)
+
+* Used by Debian-based Linux distributions, such as Ubuntu.
+
+DNF (Dandified YUM)
+
+* Used by Fedora and many RHEL-based distributions.
+
+Both package managers perform similar tasks, but the Linux distribution determines which one is used.
+
+5. Important APT Commands
+
+Command	Purpose
+apt list --installed	Lists installed packages
+apt search git	Searches package information
+sudo apt update	Refreshes package information
+sudo apt install git	Installs Git
+sudo apt remove git	Removes Git
+sudo apt upgrade	Upgrades installed packages
+
+Important difference:
+
+* apt update refreshes the local package information from configured repositories. It does not upgrade installed software.
+* apt upgrade installs newer available versions of installed packages.
+
+6. Important DNF Commands
+
+Command	Purpose
+dnf search git	Searches for packages
+sudo dnf install git	Installs Git
+sudo dnf remove git	Removes Git
+dnf check-update	Checks for available updates
+sudo dnf upgrade	Upgrades installed packages
+
+7. Understanding a Command
+
+Example:
+
+sudo apt install git
+
+* sudo — requests elevated permissions.
+* apt — package manager.
+* install — action being performed.
+* git — package being installed.
+
+8. Terminal Practice
+
+Commands practised:
+
+* apt list --installed — displayed installed packages.
+* apt search git — searched available package information.
+
+The search output showed Git marked [installed], meaning it was already installed before the search. Searching does not install software.
+
+9. Cloud Engineering Connection
+
+Cloud engineers manage Linux servers that may require additional software. They need to understand package managers and know which one is appropriate for the server’s Linux distribution.
+
+Big Idea: Package managers make software installation and maintenance easier on Linux servers.
