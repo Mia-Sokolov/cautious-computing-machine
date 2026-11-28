@@ -1074,3 +1074,85 @@ The search output showed Git marked [installed], meaning it was already installe
 Cloud engineers manage Linux servers that may require additional software. They need to understand package managers and know which one is appropriate for the server’s Linux distribution.
 
 Big Idea: Package managers make software installation and maintenance easier on Linux servers.
+Lesson 12: Linux Pipes & Redirection
+
+1. Input, Processing & Output
+
+* Input: Information a command receives.
+* Processing: Linux executes the command.
+* Output: The result produced by the command.
+
+Example:
+
+* whoami is the input (command).
+* Linux executes it (processing).
+* user is the output.
+
+2. Pipes (|)
+
+A pipe passes the output of one command to another command as input.
+
+Example:
+
+ls | wc -l
+
+* ls lists files and directories.
+* | passes the output to the next command.
+* wc -l counts the lines it receives.
+
+3. Output Redirection (>)
+
+Sends command output into a file instead of displaying it in the terminal.
+
+* Creates the file if it doesn’t exist.
+* Replaces existing contents if the file already exists.
+
+Example:
+
+ls > files.txt
+
+4. Appending Output (>>)
+
+Adds new output to the end of a file without replacing its existing contents.
+
+Example:
+
+echo "Hello Linux" > notes.txt
+echo "I am learning cloud engineering" >> notes.txt
+
+5. Input Redirection (<)
+
+Takes information from a file and gives it to a command as input.
+
+Example:
+
+wc -l < files.txt
+
+This counts the lines in the file without changing it.
+
+6. Combining Pipes & Redirection
+
+Different symbols can be combined to process information and save results.
+
+Example:
+
+ls | wc -l > count.txt
+
+1. ls produces a list of files and directories.
+2. | passes the output to wc -l.
+3. wc -l counts the lines.
+4. > saves the count inside count.txt.
+
+To view the saved result:
+
+cat count.txt
+
+7. Symbol Summary
+
+Symbol	Purpose
+`	`
+>	Writes output into a file, replacing contents
+>>	Appends output to a file
+<	Supplies file contents as command input
+
+Key takeaway: Pipes connect commands, while redirection controls how information moves between commands and files.
